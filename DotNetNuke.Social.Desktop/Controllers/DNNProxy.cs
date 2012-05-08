@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace DotNetNuke.Social.Controllers
 {
     public class DNNProxy
@@ -29,12 +30,35 @@ namespace DotNetNuke.Social.Controllers
         }
 
 
+
+        public static bool Notifications(Models.Credential Credential, int? afterNotificationId, int? numberOfRecords)
+        {
+            try
+            {
+                if (afterNotificationId == null) afterNotificationId = 0;
+                if (numberOfRecords == null) numberOfRecords = 10;
+
+                var result = PostService("SocialWeb", "SocialWeb", "Notifications", string.Format("afterNotificationId={0}&numberOfRecords={1}", afterNotificationId, numberOfRecords), Credential);
+                DotNetNuke.Social.Desktop.Program.UserContext.Notifications = Serialize.FromJson<Models.NotificationTop>(result);
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                DotNetNuke.Social.Desktop.Program.UserContext.LastException = e;
+            }
+            return false;
+        }
+
+
+
+
         public static bool CountNotifications(Models.Credential Credential)
         {
             try
             {
                 var result = PostService("SocialWeb", "SocialWeb", "GetTotals", null, Credential);
-                Models.Notifications not = Serialize.FromJson<Models.Notifications>(result);
+                Models.NotificationTop not = Serialize.FromJson<Models.NotificationTop>(result);
                 DotNetNuke.Social.Desktop.Program.UserContext.Notifications = not;
                 return true;
             }
@@ -53,8 +77,8 @@ namespace DotNetNuke.Social.Controllers
                 if (limit == null) limit = 10;
 
                 var result = PostService("SocialWeb", "SocialWeb", "Inbox", string.Format("start={0}&limit={1}", start, limit), Credential);
-                //Models.Notifications not = Serialize.FromJson<Models.Notifications>(result);
-                //DotNetNuke.Social.Desktop.Program.UserContext.Notifications = not;
+                DotNetNuke.Social.Desktop.Program.UserContext.Inbox = Serialize.FromJson<Models.Inbox>(result);
+
                 return true;
             }
             catch (Exception e)

@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -62,9 +63,11 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Action.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\Inbox.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Notifications.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Program.cs" />
@@ -95,6 +98,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Newtonsoft.Json.dll" />
+    <Content Include="Resources\Newtonsoft.Json.pdb" />
+    <Content Include="Resources\Newtonsoft.Json.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

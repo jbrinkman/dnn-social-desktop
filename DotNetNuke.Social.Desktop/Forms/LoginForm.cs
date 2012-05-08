@@ -36,10 +36,17 @@ namespace DotNetNuke.Social.Desktop.Forms
 
                 bool goodUser = Controllers.DNNProxy.Authenticate(c);
 
-                Program.CredentialRepository.AddCredential(c);
-                Program.UserContext.Credentials = c;
+                if (goodUser)
+                {
+                    Program.CredentialRepository.AddCredential(c);
+                    Program.UserContext.Credentials = c;
 
-                return;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("There was an error processing your login, please try again.");
+                }
 
             }
             catch (Exception exc)

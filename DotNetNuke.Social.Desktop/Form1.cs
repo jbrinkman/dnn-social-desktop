@@ -41,5 +41,10 @@ namespace DotNetNuke.Social.Desktop
         {
             Controllers.DNNProxy.Inbox(Program.UserContext.Credentials, null, null);
         }
+
+        private void notificationsButton_Click(object sender, EventArgs e)
+        {
+            Controllers.DNNProxy.Notifications(Program.UserContext.Credentials, null, null);
+        }
     }
 }

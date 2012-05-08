@@ -7,8 +7,9 @@ namespace DotNetNuke.Social.Models
 {
     public class UserContext
     {
-        public Notifications Notifications { get; set; }
+        public NotificationTop Notifications { get; set; }
         public Credential Credentials { get; set; }
         public System.Exception LastException { get; set; }
+        public Inbox Inbox { get; set; }
     }
 }

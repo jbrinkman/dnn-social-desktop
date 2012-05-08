@@ -45,6 +45,76 @@ namespace DotNetNuke.Social.Web
             }
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Notifications(int afterNotificationId, int numberOfRecords)
+        {
+            try
+            {
+                var notificationsDomainModel = NotificationsController.Instance.GetNotifications(UserInfo.UserID, UserController.GetCurrentUserInfo().PortalID, afterNotificationId, numberOfRecords);
+
+                
+                var notificationsViewModel = new                 {
+                    TotalNotifications = NotificationsController.Instance.CountNotifications(UserInfo.UserID, UserController.GetCurrentUserInfo().PortalID),
+                    Notifications = new List<object>(notificationsDomainModel.Count)
+                };
+
+                foreach (var notification in notificationsDomainModel)
+                {
+                    var notificationViewModel = new 
+                    {
+                        NotificationId = notification.NotificationID,
+                        Subject = notification.Subject,
+                        From = notification.From,
+                        Body = notification.Body,
+                        DisplayDate = Common.Utilities.DateUtils.CalculateDateForDisplay(notification.CreatedOnDate),
+                        SenderAvatar = string.Format(DotNetNuke.Common.Globals.UserProfilePicFormattedUrl(), notification.SenderUserID, 32, 32),
+                        SenderProfileUrl = DotNetNuke.Common.Globals.UserProfileURL(notification.SenderUserID),
+                        Actions = new List<object>()
+                    };
+
+                    var notificationType = NotificationsController.Instance.GetNotificationType(notification.NotificationTypeID);
+                    var notificationTypeActions = NotificationsController.Instance.GetNotificationTypeActions(notification.NotificationTypeID);
+
+                    foreach (var notificationTypeAction in notificationTypeActions)
+                    {
+                        var notificationActionViewModel = new 
+                        {
+                            Name = "Name",
+                            Description = "Description",
+                            Confirm = "Confirm",
+                            APICall = notificationTypeAction.APICall
+                        };
+
+                        notificationViewModel.Actions.Add(notificationActionViewModel);
+                    }
+
+                    if (notification.IncludeDismissAction)
+                    {
+                        notificationViewModel.Actions.Add(new 
+                        {
+                            Name = "Dismiss",
+                            Description = "Dismiss",
+                            Confirm = "",
+                            APICall = "DesktopModules/InternalServices/API/NotificationsService.ashx/Dismiss"
+                        });
+                    }
+
+                    notificationsViewModel.Notifications.Add(notificationViewModel);
+                }
+
+                return Json(notificationsViewModel, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                log.Error(exc);
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
 
 
         [AcceptVerbs(HttpVerbs.Post)]

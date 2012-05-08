@@ -6,10 +6,10 @@ using System.Runtime.Serialization;
 
 namespace DotNetNuke.Social.Models
 {
-    [DataContract]
-    public class Notifications
+    public class NotificationTop
     {
         public int TotalUnreadMessages { get; set; }
         public int TotalNotifications { get; set; }
+        public List<Notification> Notifications { get; set; }
     }
 }

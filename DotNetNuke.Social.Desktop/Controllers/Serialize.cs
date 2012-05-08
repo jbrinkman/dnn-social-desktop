@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
-using System.Runtime.Serialization.Json;
+
 
 namespace DotNetNuke.Social.Controllers
 {
@@ -231,23 +231,12 @@ namespace DotNetNuke.Social.Controllers
         {
             if (string.IsNullOrEmpty(JSON)) return default(T);
 
-            DataContractJsonSerializer s = new DataContractJsonSerializer(typeof(T));
-            using (System.IO.MemoryStream stm = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JSON)))
-            {
-                if (stm.CanSeek && stm.Position > 0) stm.Seek(0, SeekOrigin.Begin);
-                return (s.ReadObject(stm) as T);
-            }
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(JSON);
         }
         public static string ToJson(object O)
         {
             if (O == null) return null;
-
-            DataContractJsonSerializer s = new DataContractJsonSerializer(O.GetType());
-            using (System.IO.MemoryStream stm = new MemoryStream())
-            {
-                s.WriteObject(stm, O);
-                return Encoding.UTF8.GetString(stm.ToArray());
-            }            
+            return Newtonsoft.Json.JsonConvert.SerializeObject(O);
 
         }
 

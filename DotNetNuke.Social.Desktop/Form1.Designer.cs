@@ -30,6 +30,7 @@
         {
             this.refreshButton = new System.Windows.Forms.Button();
             this.InboxButton = new System.Windows.Forms.Button();
+            this.notificationsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // refreshButton
@@ -52,11 +53,22 @@
             this.InboxButton.UseVisualStyleBackColor = true;
             this.InboxButton.Click += new System.EventHandler(this.InboxButton_Click);
             // 
+            // notificationsButton
+            // 
+            this.notificationsButton.Location = new System.Drawing.Point(184, 206);
+            this.notificationsButton.Name = "notificationsButton";
+            this.notificationsButton.Size = new System.Drawing.Size(121, 23);
+            this.notificationsButton.TabIndex = 2;
+            this.notificationsButton.Text = "Notifications";
+            this.notificationsButton.UseVisualStyleBackColor = true;
+            this.notificationsButton.Click += new System.EventHandler(this.notificationsButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 316);
+            this.Controls.Add(this.notificationsButton);
             this.Controls.Add(this.InboxButton);
             this.Controls.Add(this.refreshButton);
             this.Name = "Form1";
@@ -69,6 +81,7 @@
 
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button InboxButton;
+        private System.Windows.Forms.Button notificationsButton;
     }
 }
 
