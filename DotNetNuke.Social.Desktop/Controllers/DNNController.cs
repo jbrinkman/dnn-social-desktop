@@ -10,24 +10,24 @@ namespace DotNetNuke.Social.Controllers
     {
 
 
+        public static bool JournalList(Models.Credential Credential, int? RowIndex, int? MaxRows)
+        {
+            try
+            {
+                if (RowIndex == null) RowIndex = 0;
+                if (MaxRows == null) MaxRows = 10;
 
-        //public static bool GetUserItems(Models.Credential Credential)
-        //{
-        //    try
-        //    {
-        //        if (afterNotificationId == null) afterNotificationId = 0;
-        //        if (numberOfRecords == null) numberOfRecords = 10;
+                var result = PostService("SocialWeb", "SocialWeb", "JournalList", string.Format("RowIndex={0}&MaxRows={1}", RowIndex, MaxRows), Credential);
+                DotNetNuke.Social.Desktop.Program.UserContext.Journal = Serialize.FromJson<List<Models.Journal.Journal>>(result);
 
-        //        var result = PostService("SocialWeb", "SocialWeb", "Notifications", null, Credential);
-        //        //DotNetNuke.Social.Desktop.Program.UserContext.Notifications = Serialize.FromJson<Models.NotificationTop>(result);
-
-        //        return true;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        DotNetNuke.Social.Desktop.Program.UserContext.LastException = e;
-        //    }
-        //}
+                return true;
+            }
+            catch (Exception e)
+            {
+                DotNetNuke.Social.Desktop.Program.UserContext.LastException = e;
+            }
+            return false;
+        }
 
 
 

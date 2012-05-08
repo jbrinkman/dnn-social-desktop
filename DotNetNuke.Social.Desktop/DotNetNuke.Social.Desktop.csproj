@@ -67,6 +67,10 @@
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\Inbox.cs" />
+    <Compile Include="Models\Journal\ItemData.cs" />
+    <Compile Include="Models\Journal\Journal.cs" />
+    <Compile Include="Models\Journal\JournalAuthor.cs" />
+    <Compile Include="Models\Journal\JournalOwner.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Notifications.cs" />
     <Compile Include="Models\UserContext.cs" />

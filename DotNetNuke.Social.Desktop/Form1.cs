@@ -30,21 +30,32 @@ namespace DotNetNuke.Social.Desktop
                     login.ShowDialog();
                 }
             }
+
+            this.propertyGrid1.SelectedObject = Program.UserContext;
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
             Controllers.DNNController.CountNotifications(Program.UserContext.Credentials);
+            this.propertyGrid1.Update();
         }
 
         private void InboxButton_Click(object sender, EventArgs e)
         {
             Controllers.DNNController.Inbox(Program.UserContext.Credentials, null, null);
+            this.propertyGrid1.Update();
         }
 
         private void notificationsButton_Click(object sender, EventArgs e)
         {
             Controllers.DNNController.Notifications(Program.UserContext.Credentials, null, null);
+            this.propertyGrid1.Update();
+        }
+
+        private void journalItemsButton_Click(object sender, EventArgs e)
+        {
+            Controllers.DNNController.JournalList(Program.UserContext.Credentials, null, null);
+            this.propertyGrid1.Update();
         }
     }
 }

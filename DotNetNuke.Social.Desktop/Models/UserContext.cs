@@ -11,5 +11,6 @@ namespace DotNetNuke.Social.Models
         public Credential Credentials { get; set; }
         public System.Exception LastException { get; set; }
         public Inbox Inbox { get; set; }
+        public List<Models.Journal.Journal> Journal { get; set; }
     }
 }

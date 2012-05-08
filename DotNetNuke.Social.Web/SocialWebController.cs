@@ -33,12 +33,12 @@ namespace DotNetNuke.Social.Web
 
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult JournalList(int ProfileID)
+        public ActionResult JournalList(int RowIndex, int MaxRows)
         {
             try
             {
-                
-                //return Json(InternalJournalController.Instance.GetJournalItemsByProfile(PortalSettings.PortalId, ActiveModule.ModuleID, UserInfo.UserID, profileId, 0, 20));
+                DotNetNuke.Services.Journal.JournalController jc = new JournalController();
+                return Json(jc.GetJournalItems(PortalSettings.PortalId, -1, base.UserInfo.UserID, RowIndex, MaxRows));
 
             }
             catch (Exception exc)
