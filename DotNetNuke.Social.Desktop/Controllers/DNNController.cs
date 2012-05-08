@@ -9,6 +9,34 @@ namespace DotNetNuke.Social.Controllers
     public class DNNController
     {
 
+
+
+        //public static bool GetUserItems(Models.Credential Credential)
+        //{
+        //    try
+        //    {
+        //        if (afterNotificationId == null) afterNotificationId = 0;
+        //        if (numberOfRecords == null) numberOfRecords = 10;
+
+        //        var result = PostService("SocialWeb", "SocialWeb", "Notifications", null, Credential);
+        //        //DotNetNuke.Social.Desktop.Program.UserContext.Notifications = Serialize.FromJson<Models.NotificationTop>(result);
+
+        //        return true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        DotNetNuke.Social.Desktop.Program.UserContext.LastException = e;
+        //    }
+        //}
+
+
+
+
+
+
+
+
+
         //private static Models.UserItems CurrentUserItems = null;
         public static bool Authenticate(Models.Credential Credential)
         {

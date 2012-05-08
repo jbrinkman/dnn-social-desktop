@@ -13,6 +13,9 @@ using DotNetNuke.Security.Membership;
 using DotNetNuke.Security.Roles;
 using DotNetNuke.Services.Social.Notifications;
 using DotNetNuke.Services.Social.Messaging;
+using DotNetNuke.Services.Journal;
+
+
 
 namespace DotNetNuke.Social.Web
 {
@@ -26,6 +29,23 @@ namespace DotNetNuke.Social.Web
         {
 
             return Json(Input);
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult JournalList(int ProfileID)
+        {
+            try
+            {
+                
+                //return Json(InternalJournalController.Instance.GetJournalItemsByProfile(PortalSettings.PortalId, ActiveModule.ModuleID, UserInfo.UserID, profileId, 0, 20));
+
+            }
+            catch (Exception exc)
+            {
+                log.Error(exc);
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
         }
 
 
