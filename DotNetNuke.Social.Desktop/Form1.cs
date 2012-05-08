@@ -23,7 +23,7 @@ namespace DotNetNuke.Social.Desktop
             }
             else
             {
-                bool goodUser = Controllers.DNNProxy.Authenticate(Program.UserContext.Credentials);
+                bool goodUser = Controllers.DNNController.Authenticate(Program.UserContext.Credentials);
                 if (!goodUser)
                 {
                     Forms.LoginForm login = new Forms.LoginForm();
@@ -34,17 +34,17 @@ namespace DotNetNuke.Social.Desktop
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            Controllers.DNNProxy.CountNotifications(Program.UserContext.Credentials);
+            Controllers.DNNController.CountNotifications(Program.UserContext.Credentials);
         }
 
         private void InboxButton_Click(object sender, EventArgs e)
         {
-            Controllers.DNNProxy.Inbox(Program.UserContext.Credentials, null, null);
+            Controllers.DNNController.Inbox(Program.UserContext.Credentials, null, null);
         }
 
         private void notificationsButton_Click(object sender, EventArgs e)
         {
-            Controllers.DNNProxy.Notifications(Program.UserContext.Credentials, null, null);
+            Controllers.DNNController.Notifications(Program.UserContext.Credentials, null, null);
         }
     }
 }

@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DNNProxy.cs" />
+    <Compile Include="Controllers\DNNController.cs" />
     <Compile Include="Controllers\Serialize.cs" />
     <Compile Include="Controllers\StorageController.cs" />
     <Compile Include="Controllers\Web.cs" />

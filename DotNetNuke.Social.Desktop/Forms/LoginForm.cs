@@ -34,7 +34,7 @@ namespace DotNetNuke.Social.Desktop.Forms
             try
             {
 
-                bool goodUser = Controllers.DNNProxy.Authenticate(c);
+                bool goodUser = Controllers.DNNController.Authenticate(c);
 
                 if (goodUser)
                 {
